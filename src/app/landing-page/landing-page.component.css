@@ -1,0 +1,79 @@
+.mat-toolbar {
+    justify-content: right;
+    background: #FAFAFA;
+}
+
+.signup-toolbar {
+    margin-right: 10px;
+}
+
+.login-toolbar {
+    background: #3F51B5;
+    border-radius: 36px;
+    color: white;
+    margin-right: 50px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto 1px;
+}
+
+.grid-container>div {
+    text-align: center;
+}
+
+.title {
+    margin-top: 100px;
+    margin-left: 0px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 70px;
+    color: rgba(0, 0, 0, 0.87);
+    white-space: pre-wrap;
+    line-height: normal;
+}
+
+.text {
+    width: 698px;
+    height: 120px;
+    margin-left: 105px;
+    margin-top: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: rgba(97, 97, 97, 0.9);
+}
+
+.signup-button {
+    justify-content: center;
+    align-items: center;
+    width: 204px;
+    height: 64px;
+    margin-left: 10px;
+    background: #3F51B5;
+    border-radius: 36px;
+    color: white;
+}
+
+.login-button {
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    width: 204px;
+    height: 64px;
+    margin-left: 30px;
+    background: #FAFAFA;
+    border: 3px solid #3F51B5;
+    border-radius: 36px;
+}
+
+.phone {
+    width: 600px;
+    height: 600px;
+    margin-top: 50px;
+    margin-right: 20px;
+}

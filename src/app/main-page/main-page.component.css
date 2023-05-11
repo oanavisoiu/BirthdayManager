@@ -1,0 +1,53 @@
+.spacer {
+    flex: auto;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.sidenav {
+    padding: 20px;
+    background-color: whitesmoke;
+    color: rgba(51, 50, 50, 0.767);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 200px;
+}
+
+.info {
+    font-weight: 900;
+    color: rgba(51, 50, 50, 0.938);
+}
+
+.content {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.filter {
+    display: flex;
+    height: 60px;
+    flex-flow: column wrap;
+    align-content: space-between;
+    margin-top: 20px;
+}
+
+.table {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.mat-row:hover {
+    font-weight: bold;
+    background-color: orange;
+}
+
+mat-header-cell {
+    align-content: center;
+}
+
+mat-cell {
+    align-content: center;
+}

@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+    <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <span>Password Manager</span>
+</mat-toolbar>
+
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side" color="primary">
+        <div class="info">
+            INFO
+        </div>
+        <button mat-button>
+            Personal information
+        </button>
+    </mat-drawer>
+
+    <div>
+        <div class="content">
+            <div class="filter">
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Filter">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="openDialog()">
+                        <mat-icon>add</mat-icon>Add
+                    </button>
+                </div>
+            </div>
+
+            <div class="table">
+                <mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="accountName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.accountName}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Url Column -->
+                    <ng-container matColumnDef="url">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Url </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.url}} </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="expiration-date">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Password Expiration Date
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="password-security">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Password Security Level
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
+                    </ng-container> -->
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row (click)="clickedRows.add(row); openDetails(row.id)"
+                        [class.row-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>>
+                </mat-table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+    </div>
+
+</mat-drawer-container>

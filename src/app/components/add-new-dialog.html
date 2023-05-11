@@ -1,0 +1,72 @@
+<div mat-dialog-content>
+    <!-- <p> Add your account details.</p>
+    <form (ngSubmit)="onAddAccount()">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input input type="email" name="isEmail" ngModel email matInput [(ngModel)]="account.emailAccount"
+                name="emailAccount" #emailAccountCtrl="ngModel">
+            <mat-error *ngIf="emailAccountCtrl.invalid">Please enter a valid email.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Website password</mat-label>
+            <input matInput [(ngModel)]="account.oldPassword" name="oldPassword">
+        </mat-form-field>
+        <mat-form-field color="accent" appearance="fill">
+            <mat-label>Custom calendar color</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="account.endDate" name="endDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker color="primary"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Select</mat-label>
+            <mat-select>
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onNoClick()">No Thanks</button>
+            <button mat-button [mat-dialog-close]="account" cdkFocusInitial type="submit"
+                [disabled]="accountForm.valid">Ok</button>
+        </div>
+    </form> -->
+
+    <form [formGroup]="accountForm" (ngSubmit)="onAddAccount()">
+        <div class="text">
+            <h3>Insert your account details.</h3>
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="emailAccount" placeholder="">
+            <mat-error *ngIf="emailAccount?.invalid">Please enter a valid email.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password </mat-label>
+            <input matInput formControlName="oldPassword">
+            <mat-error *ngIf="oldPassword?.hasError('required')">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent" appearance="fill">
+            <mat-label>Pick a date for your password expiration</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="endDate">
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker color="primary"></mat-datepicker> -->
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker>
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+            </mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>IdWebsite </mat-label>
+            <input matInput formControlName="idWebsite">
+            <mat-error *ngIf="idWebsite?.hasError('required')">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <button style="margin-top: 30px;" color="primary" type="submit" mat-raised-button>OK</button>
+        <button mat-button (click)="onNoClick()">No Thanks</button>
+    </form>
+
+</div>

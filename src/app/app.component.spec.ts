@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'BirthdayManager'`, () => {
+  it(`should have as title 'passwordManager'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('BirthdayManager');
+    expect(app.title).toEqual('passwordManager');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('BirthdayManager app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('passwordManager app is running!');
   });
 });
