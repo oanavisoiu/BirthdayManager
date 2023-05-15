@@ -53,15 +53,15 @@
     text-align: center;
     align-items: center;
     
-    background: #3F51B5;
+    background: #b53f90;
     border-radius: 0 27px 27px 0;
     box-shadow: 33px 13px 40px -8px rgba(0, 0, 0, 0.5);
     
 }
 
 .login-button{
-    border: 3px solid #3F51B5;
-    background: #3F51B5;
+    border: 3px solid #b53f90;
+    background: #b53f90;
     border-radius: 36px;
     color: #ffffff;
     margin-top: 50px;

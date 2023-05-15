@@ -1,14 +1,18 @@
 .mat-toolbar {
     justify-content: right;
-    background: #FAFAFA;
+    background: #b53f90;
 }
 
 .signup-toolbar {
     margin-right: 10px;
+    border-radius: 36px;
 }
-
+.buttonClass{
+    margin-top: 200px;
+    margin-left: 50px;
+}
 .login-toolbar {
-    background: #3F51B5;
+    background: #b53f90;
     border-radius: 36px;
     color: white;
     margin-right: 50px;
@@ -24,8 +28,9 @@
 }
 
 .title {
+
     margin-top: 100px;
-    margin-left: 0px;
+    margin-left: 100px;
     font-family: 'Roboto';
     font-weight: 700;
     font-size: 70px;
@@ -54,9 +59,10 @@
     width: 204px;
     height: 64px;
     margin-left: 10px;
-    background: #3F51B5;
+    background: #b53f90;
     border-radius: 36px;
     color: white;
+    border-radius: 36px;
 }
 
 .login-button {
@@ -67,11 +73,12 @@
     height: 64px;
     margin-left: 30px;
     background: #FAFAFA;
-    border: 3px solid #3F51B5;
+    border: 3px solid #b53f90;
     border-radius: 36px;
 }
 
-.phone {
+.img {
+    margin-left: 150px;
     width: 600px;
     height: 600px;
     margin-top: 50px;

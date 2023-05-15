@@ -1,0 +1,39 @@
+@import "~ng-zorro-antd/ng-zorro-antd.css";
+.spacer {
+    flex: auto;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.sidenav {
+    padding: 20px;
+    background-color: whitesmoke;
+    color: rgba(51, 50, 50, 0.767);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 200px;
+}
+
+
+
+.search-box {
+    padding: 8px;
+  }
+
+  .search-box input {
+    width: 188px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .search-box button {
+    width: 90px;
+  }
+
+  .search-button {
+    margin-right: 8px;
+  }
