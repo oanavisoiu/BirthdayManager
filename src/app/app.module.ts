@@ -1,16 +1,24 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { MainPageComponent } from './main-page/main-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 import { AppComponent } from './app.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
-import { LogInPageComponent } from './log-in-page/log-in-page.component';
+import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddNewAccountDiagol } from './components/add-new-dialog';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { AddFriendsComponent } from './dialogs/add-friends/add-friends.component';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -19,7 +27,7 @@ import { AddNewAccountDiagol } from './components/add-new-dialog';
     SignUpPageComponent,
     MainPageComponent,
     LogInPageComponent,
-    AddNewAccountDiagol
+    AddFriendsComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,9 +35,14 @@ import { AddNewAccountDiagol } from './components/add-new-dialog';
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    NzDropDownModule,
+    NzTableModule
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

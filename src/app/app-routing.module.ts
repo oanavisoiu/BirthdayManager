@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LogInPageComponent } from './log-in-page/log-in-page.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 
 const routes: Routes = [
   {
