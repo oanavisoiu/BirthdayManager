@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class AddFriendsComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public dataDialog: any,
     private dialogRef: MatDialogRef<AddFriendsComponent>,
-    private userService: UserService)  { }
+    private userService: UserService,
+    private _snackBar: MatSnackBar)  { this.data = dataDialog;
+      console.log(this.data); }
 
 
   
@@ -34,13 +37,22 @@ export class AddFriendsComponent implements OnInit {
   }
 
   addFriend() {
-    const reviewData = this.friendForm.value;
-    this.userService.addFriends(reviewData, this.data.idUser, this.data.idMovie).subscribe(
+    const friendData = this.friendForm.value;
+    this.userService.addFriends(this.data.idUser,friendData).subscribe(
       response => {
         this.dialogRef.close();
         this.openSnackBar(response.message);
       },
     );
+  }
+
+  private openSnackBar(message: string): void {
+    this._snackBar.open(message, 'Close',
+      {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      })
   }
 
 

@@ -17,7 +17,8 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { AddFriendsComponent } from './dialogs/add-friends/add-friends.component';
-
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { EditFriendsComponent } from './dialogs/edit-friends/edit-friends.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -28,6 +29,7 @@ registerLocaleData(en);
     MainPageComponent,
     LogInPageComponent,
     AddFriendsComponent,
+    EditFriendsComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     FormsModule,
     NzDropDownModule,
-    NzTableModule
+    NzTableModule,
+    NzIconModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
