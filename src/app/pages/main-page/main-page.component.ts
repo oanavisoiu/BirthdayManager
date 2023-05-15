@@ -21,9 +21,33 @@ import { EditFriendsComponent } from 'src/app/dialogs/edit-friends/edit-friends.
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
+
+  listOfColumn = [
+    {
+      title: 'First Name',
+      compare: (a: Friend, b: Friend) => a.firstName.localeCompare(b.firstName),
+    },
+    {
+      title: 'Last Name',
+      compare: (a: Friend, b: Friend) => a.lastName.localeCompare(b.lastName),
+    },
+    {
+      title: 'Phone Number',
+      compare: (a: Friend, b: Friend) => a.phoneNumber.localeCompare(b.phoneNumber),
+    },
+    {
+      title: 'Birthdate',
+      compare: (a: Friend, b: Friend) => a.birthdate.localeCompare(b.birthdate),
+    },
+    {
+      title: 'City',
+      compare: (a: Friend, b: Friend) => a.city.localeCompare(b.city),
+    },
+  ];
+
   searchValue = '';
   visible = false;
- 
+
   friendById!:Friend;
   message!: string;
   friendList: Friend[] = [];
@@ -83,9 +107,9 @@ export class MainPageComponent implements OnInit {
         let message = response.message;
         this.openSnackBar(message);
         console.log(response.message)
-  
+
       });
-   
+
   }
   openEdit(id:string) {
     this.userService.getFriendById(id).subscribe((data: any) => {
@@ -120,5 +144,5 @@ export class MainPageComponent implements OnInit {
     this.listOfDisplayData = this.friendList.filter((item: Friend) => item.firstName.indexOf(this.searchValue) !== -1);
   }
 }
- 
+
 

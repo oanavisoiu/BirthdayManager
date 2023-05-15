@@ -1,80 +1,74 @@
-
-<mat-toolbar  style="background-color: #b53f90;">
-    <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span class="spacer"></span>
-    <span>Birthday Manager</span>
+<mat-toolbar style="background-color: #b53f90;">
+  <button type="button" mat-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <span>Birthday Manager</span>
 </mat-toolbar>
 
 <mat-drawer-container class="container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="side" color="primary">
-        <div class="info">
-            INFO
-        </div>
-        <button mat-button>
-            Personal information
-        </button>
-    </mat-drawer>
-
-    <div>
-        <div class="content">
-            <div class="filter">
-                <div>
-                    <mat-form-field>
-                        <input matInput placeholder="Filter">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button mat-raised-button style="background-color: #b53f90;" (click)="open()">
-                        <mat-icon>add</mat-icon>Add
-                    </button>
-                </div>
-            </div>
-
-            <div class="table">
-              
-                <nz-table #nzTable [nzData]="friendList" nzTableLayout="fixed">
-                    <thead>
-                      <tr>
-                        <th nzCustomFilter>
-                         First Name
-                          <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
-                            <span nz-icon nzType="search"></span>
-                          </nz-filter-trigger>
-                        </th>
-                        <th>Last Name</th>
-                        <th>Phone Number</th>
-                        <th>Birthdate</th>
-                        <th>City</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let data of nzTable.data">
-                        <td>{{ data.firstName }}</td>
-                        <td>{{ data.lastName }}</td>
-                        <td>{{ data.phoneNumber }}</td>
-                        <td>{{ data.birthdate }}</td>
-                        <td>{{ data.city }}</td>
-                        <td> <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteFriend(data.id)"></span>
-                          <span nz-icon nzType="info-circle" nzTheme="outline" (click)="openEdit(data.id)"></span></td>
-                      </tr>
-                    </tbody>
-                  </nz-table>
-                  <nz-dropdown-menu #menu="nzDropdownMenu">
-                    <div class="ant-table-filter-dropdown">
-                      <div class="search-box">
-                        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
-                        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
-                        <button nz-button nzSize="small" (click)="reset()">Reset</button>
-                      </div>
-                    </div>
-                  </nz-dropdown-menu>
-
-               
-            </div>
-        </div>
+  <mat-drawer #drawer class="sidenav" mode="side" color="primary">
+    <div class="info">
+      INFO
     </div>
+    <button mat-button>
+      Personal information
+    </button>
+  </mat-drawer>
+
+  <div class="main">
+    <div class="header">
+      <div class="div-filter">
+        <mat-form-field class="filter">
+          <input matInput placeholder="Filter">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button style="background-color: #b53f90;" (click)="open()">
+          <mat-icon>add</mat-icon>
+          Add friend
+        </button>
+      </div>
+    </div>
+
+    <div class="table">
+
+      <nz-table #sortTable [nzData]="friendList" nzTableLayout="fixed">
+        <thead>
+          <tr>
+            <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare">
+              {{ column.title }}
+            </th>
+            <th>
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of sortTable.data">
+            <td>{{ data.firstName }}</td>
+            <td>{{ data.lastName }}</td>
+            <td>{{ data.phoneNumber }}</td>
+            <td>{{ data.birthdate }}</td>
+            <td>{{ data.city }}</td>
+            <td> <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteFriend(data.id)"></span>
+              <span nz-icon nzType="info-circle" nzTheme="outline" (click)="openEdit(data.id)"></span>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+
+
+    </div>
+  </div>
 
 </mat-drawer-container>

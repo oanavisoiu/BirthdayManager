@@ -19,6 +19,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { AddFriendsComponent } from './dialogs/add-friends/add-friends.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { EditFriendsComponent } from './dialogs/edit-friends/edit-friends.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 registerLocaleData(en);
 
 @NgModule({
@@ -41,7 +42,8 @@ registerLocaleData(en);
     FormsModule,
     NzDropDownModule,
     NzTableModule,
-    NzIconModule
+    NzIconModule,
+    NzButtonModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
