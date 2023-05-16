@@ -37,7 +37,11 @@ export class MainPageComponent implements OnInit {
     },
     {
       title: 'Birthdate',
-      compare: (a: Friend, b: Friend) => a.birthdate.localeCompare(b.birthdate),
+      compare: (a: Friend, b: Friend) => {
+        const dateA = new Date(a.birthdate);
+        const dateB = new Date(b.birthdate);
+        return dateA.getTime() - dateB.getTime();
+      }
     },
     {
       title: 'City',
