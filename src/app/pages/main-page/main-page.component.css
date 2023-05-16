@@ -1,4 +1,18 @@
-@import "~ng-zorro-antd/ng-zorro-antd.css";
+.main{
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.header{
+  display:flex;
+}
+.div-filter{
+  margin-right: 50px;
+}
+.filter{
+  width: 300px;
+}
 .spacer {
     flex: auto;
 }

@@ -10,15 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { NzTableModule } from 'ng-zorro-antd/table';
 import { AddFriendsComponent } from './dialogs/add-friends/add-friends.component';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { EditFriendsComponent } from './dialogs/edit-friends/edit-friends.component';
+import { ZorroModule } from './shared/modules/zorro/zorro.module';
 registerLocaleData(en);
 
 @NgModule({
@@ -39,9 +37,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    NzDropDownModule,
-    NzTableModule,
-    NzIconModule
+    ZorroModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
