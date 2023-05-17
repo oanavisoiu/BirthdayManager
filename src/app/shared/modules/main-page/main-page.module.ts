@@ -6,7 +6,9 @@ import { ZorroModule } from '../zorro/zorro.module';
 
 
 @NgModule({
-  declarations: [MainPageComponent],
+  declarations: [
+    MainPageComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,

@@ -7,11 +7,12 @@
 .header{
   display:flex;
 }
-.div-filter{
+.group-filter{
+  width: 300px;
   margin-right: 50px;
 }
 .filter{
-  width: 300px;
+  display:flex;
 }
 .spacer {
     flex: auto;

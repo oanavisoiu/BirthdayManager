@@ -1,10 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -49,6 +48,7 @@ export class MainPageComponent implements OnInit {
     },
   ];
 
+
   searchValue = '';
   visible = false;
 
@@ -76,15 +76,34 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.setId();
     this.getFriends();
+    this.setFilteredDataToInitial();
   }
 
+  // getFriends() {
+  //   this.setId();
+  //   this.userService.getFriends(this.user_id).subscribe((data: any) => {
+  //     this.friendList = data.data as Friend[];
+  //  console.log(this.friendList);
+  //   });
+
+  // }
   getFriends() {
     this.setId();
+    // Retrieve the data from the database
     this.userService.getFriends(this.user_id).subscribe((data: any) => {
+      // Assign the retrieved data to the friendList
       this.friendList = data.data as Friend[];
-   console.log(this.friendList);
+      console.log(this.friendList);
     });
 
+    // Set friendList locally with your desired data
+    // this.friendList = [
+    //   { id: '1',idUser:'1', firstName: 'Friend', lastName:'djhwg',phoneNumber:'12345',birthdate:'13.23.4567', city:'dfw' },
+    //   { id: '2',idUser:'1', firstName: 'riend', lastName:'jhvh',phoneNumber:'12345',birthdate:'13.23.4567', city:'dfw' },
+    //   { id: '3',idUser:'1', firstName: 'iend', lastName:'dghh',phoneNumber:'12345',birthdate:'13.23.4567', city:'dfw' },
+    //   { id: '4',idUser:'1', firstName: 'end', lastName:'sa',phoneNumber:'12345',birthdate:'13.23.4567', city:'dfw' },
+    //   // Add more friends as needed
+    // ];
   }
   private openSnackBar(message: string): void {
     this._snackBar.open(message, 'Close',
@@ -145,17 +164,11 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  
+
   // Create a MatTableDataSource instance to enable filtering
-  dataSource = new MatTableDataSource<any>(this.friendList);
 
   // ...
 
-  applyFilter(event: any) {
-    const value = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.dataSource.filter = value;
-  }
-  
 
   reset(): void {
     this.searchValue = '';
@@ -168,6 +181,26 @@ export class MainPageComponent implements OnInit {
     this.visible = false;
     this.listOfDisplayData = this.friendList.filter((item: Friend) => item.firstName.indexOf(this.searchValue) !== -1);
   }
+  filteredData = this.friendList;
+  searchText= '';
+
+  filterTable() {
+    console.log(this.filteredData);
+    if (this.searchText) {
+      this.filteredData = this.friendList.filter(item =>
+        item.firstName.toLowerCase().includes(this.searchText.toLowerCase())
+        || item.lastName.toLowerCase().includes(this.searchText.toLowerCase())
+        || item.birthdate.toLowerCase().includes(this.searchText.toLowerCase())
+        || item.city.toLowerCase().includes(this.searchText.toLowerCase())
+        || item.phoneNumber.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    }
+
+     else {
+      this.filteredData = this.friendList;
+    }
+  }
+  setFilteredDataToInitial(){
+    this.filteredData=this.friendList;
+  }
 }
-
-

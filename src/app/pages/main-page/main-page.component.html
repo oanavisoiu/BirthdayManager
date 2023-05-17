@@ -19,13 +19,18 @@
   <div class="main">
 
     <div class="header">
-      <div class="div-filter">
-        <mat-form-field class="filter">
-          <input matInput placeholder="Filter" >
-        </mat-form-field>
-        <button mat-icon-button >
-          
-        </button>
+      <div class="group-filter">
+        <nz-input-group>
+          <div class="filter">
+            <input nz-input [(ngModel)]="searchText" placeholder="Search" />
+          <button mat-raised-button style="background-color: #b53f90;" (click)="filterTable()">
+            <mat-icon>search</mat-icon>
+          </button>
+          <button mat-raised-button style="background-color: #b53f90;" (click)="setFilteredDataToInitial()">
+            <mat-icon>cached</mat-icon>
+          </button>
+          </div>
+        </nz-input-group>
       </div>
       <div>
         <button mat-raised-button style="background-color: #b53f90;" (click)="open()">
@@ -34,19 +39,19 @@
         </button>
       </div>
     </div>
-    
+
     <div class="table">
-     
-      <nz-table #sortTable [nzData]="friendList" nzTableLayout="fixed">
+
+      <nz-table #sortTable [nzData]="filteredData" nzTableLayout="fixed">
         <thead>
           <tr>
-            
+
             <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare">
-             
-              {{ column.title }}   
-            
+
+              {{ column.title }}
+
             </th>
-            
+
             <th>
               Actions
               <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
@@ -68,7 +73,7 @@
           </tr>
         </tbody>
       </nz-table>
-    
+
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <div class="ant-table-filter-dropdown">
           <div class="search-box">
