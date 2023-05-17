@@ -21,14 +21,15 @@ export class UserService {
     return this.http.get<ResponseObject>(this.usersListUrl);
   }
   public getFriends(id:string): Observable<ResponseObject> {
-    return this.http.get<ResponseObject>(`${this.usersListUrl}/${id}/friends`)
+    return this.http.get<ResponseObject>(`${this.usersListUrl}/${id}/friend`)
   }
   public getFriendById(id:string): Observable<ResponseObject> {
-    return this.http.get<ResponseObject>(`${this.usersListUrl}/friends/${id}`)
+    return this.http.get<ResponseObject>(`${this.usersListUrl}/${id}`)
   }
-  public addFriends(userFriends:UserFriends,id:string): Observable<ResponseObject> {
-    return this.http.post<ResponseObject>(`${this.usersListUrl}/${id}`,userFriends);
- }
+
+ public addUserFriends(friend:Friend,idUser:string): Observable<ResponseObject> {
+  return this.http.post<ResponseObject>(`${this.usersListUrl}/${idUser}/addFriend`,friend);
+}
  public deleteFriends(id:string):Observable<ResponseObject>{
   return this.http.delete<ResponseObject>(`${this.usersListUrl}/deleteFriend/${id}`)
 }

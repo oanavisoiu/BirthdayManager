@@ -115,6 +115,17 @@ export class MainPageComponent implements OnInit {
       });
 
   }
+  // searchValue = '';
+
+  // applyFilter() {
+  //   // Aplicați filtrul aici, folosind valoarea din 'searchValue'
+  //   // Actualizați tabelul cu rezultatele filtrate
+  // }
+
+  clearFilter() {
+    this.searchValue = '';
+    //this.applyFilter();
+  }
   openEdit(id:string) {
     this.userService.getFriendById(id).subscribe((data: any) => {
       this.friendById = data.data;
@@ -134,7 +145,17 @@ export class MainPageComponent implements OnInit {
     });
   }
 
+  
+  // Create a MatTableDataSource instance to enable filtering
+  dataSource = new MatTableDataSource<any>(this.friendList);
 
+  // ...
+
+  applyFilter(event: any) {
+    const value = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = value;
+  }
+  
 
   reset(): void {
     this.searchValue = '';

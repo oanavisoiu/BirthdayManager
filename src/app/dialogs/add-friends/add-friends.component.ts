@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { switchMap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -35,16 +36,18 @@ export class AddFriendsComponent implements OnInit {
       city: new FormControl(""),
     });
   }
-
+  
   addFriend() {
     const friendData = this.friendForm.value;
-    this.userService.addFriends(this.data.idUser,friendData).subscribe(
+    this.userService.addUserFriends(friendData,this.data.idUser).subscribe(
       response => {
         this.dialogRef.close();
         this.openSnackBar(response.message);
       },
     );
   }
+  
+  
 
   private openSnackBar(message: string): void {
     this._snackBar.open(message, 'Close',

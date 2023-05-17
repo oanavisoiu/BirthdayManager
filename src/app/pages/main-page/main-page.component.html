@@ -17,11 +17,15 @@
   </mat-drawer>
 
   <div class="main">
+
     <div class="header">
       <div class="div-filter">
         <mat-form-field class="filter">
-          <input matInput placeholder="Filter">
+          <input matInput placeholder="Filter" >
         </mat-form-field>
+        <button mat-icon-button >
+          
+        </button>
       </div>
       <div>
         <button mat-raised-button style="background-color: #b53f90;" (click)="open()">
@@ -30,17 +34,24 @@
         </button>
       </div>
     </div>
-
+    
     <div class="table">
-
+     
       <nz-table #sortTable [nzData]="friendList" nzTableLayout="fixed">
         <thead>
           <tr>
+            
             <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare">
-              {{ column.title }}
+             
+              {{ column.title }}   
+            
             </th>
+            
             <th>
               Actions
+              <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                <span nz-icon nzType="search"></span>
+              </nz-filter-trigger>
             </th>
           </tr>
         </thead>
@@ -57,6 +68,7 @@
           </tr>
         </tbody>
       </nz-table>
+    
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <div class="ant-table-filter-dropdown">
           <div class="search-box">
@@ -66,7 +78,6 @@
           </div>
         </div>
       </nz-dropdown-menu>
-
 
     </div>
   </div>
