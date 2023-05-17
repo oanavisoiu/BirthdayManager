@@ -76,7 +76,7 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.setId();
     this.getFriends();
-    this.setFilteredDataToInitial();
+    
   }
 
   // getFriends() {
@@ -94,16 +94,9 @@ export class MainPageComponent implements OnInit {
       // Assign the retrieved data to the friendList
       this.friendList = data.data as Friend[];
       console.log(this.friendList);
+      this.filteredData = this.friendList;
     });
-
-    // Set friendList locally with your desired data
-    // this.friendList = [
-    //   { id: '1',idUser:'1', firstName: 'Friend', lastName:'djhwg',phoneNumber:'12345',birthdate:'13.23.4567', city:'dfw' },
-    //   { id: '2',idUser:'1', firstName: 'riend', lastName:'jhvh',phoneNumber:'12345',birthdate:'13.23.4567', city:'dfw' },
-    //   { id: '3',idUser:'1', firstName: 'iend', lastName:'dghh',phoneNumber:'12345',birthdate:'13.23.4567', city:'dfw' },
-    //   { id: '4',idUser:'1', firstName: 'end', lastName:'sa',phoneNumber:'12345',birthdate:'13.23.4567', city:'dfw' },
-    //   // Add more friends as needed
-    // ];
+   
   }
   private openSnackBar(message: string): void {
     this._snackBar.open(message, 'Close',
