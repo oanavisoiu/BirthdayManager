@@ -20,9 +20,6 @@ export class AddFriendsComponent implements OnInit {
     private _snackBar: MatSnackBar)  { this.data = dataDialog;
       console.log(this.data); }
 
-
-  
-
   ngOnInit(): void {
     this.initForm();
   }
@@ -36,7 +33,7 @@ export class AddFriendsComponent implements OnInit {
       city: new FormControl(""),
     });
   }
-  
+
   addFriend() {
     const friendData = this.friendForm.value;
     this.userService.addUserFriends(friendData,this.data.idUser).subscribe(
@@ -46,8 +43,8 @@ export class AddFriendsComponent implements OnInit {
       },
     );
   }
-  
-  
+
+
 
   private openSnackBar(message: string): void {
     this._snackBar.open(message, 'Close',

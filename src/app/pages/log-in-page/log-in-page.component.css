@@ -1,12 +1,10 @@
 .body{
-    /* position:absolute; */
-    /* display: flex; */
     justify-content: center;
     height:100%;
     width:100%;
     background: white;
-    
-    
+
+
 }
 
 .login-container{
@@ -15,7 +13,7 @@
     display: flex;
     width: 1000px;
     height: 700px;
-    
+
 }
 
 .login-form{
@@ -25,19 +23,19 @@
     align-items: flex-start;
     justify-content: center;
     margin-top: 50px;
-    
-    
+
+
     width: 500px;
     height: 700px;
-    
-    
+
+
 
     text-align: center;
     align-items: center;
     box-shadow: -33px 13px 40px -8px rgba(0, 0, 0, 0.5);
     background: #ffffff;
-    
-    
+
+
 }
 
 .sign-up{
@@ -52,11 +50,11 @@
     height: 700px;
     text-align: center;
     align-items: center;
-    
+
     background: #b53f90;
     border-radius: 0 27px 27px 0;
     box-shadow: 33px 13px 40px -8px rgba(0, 0, 0, 0.5);
-    
+
 }
 
 .login-button{
@@ -92,7 +90,7 @@
     top: 0;
     right:0;
     margin-top: 20px;
-    margin-right:20px;    
+    margin-right:20px;
 }
 
 

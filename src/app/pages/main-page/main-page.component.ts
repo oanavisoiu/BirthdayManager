@@ -1,14 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-
-import { User } from '../../models/user';
-
 import { UserService } from '../../services/user.service';
 import { Friend } from '../../models/friend';
 import { AddFriendsComponent } from '../../dialogs/add-friends/add-friends.component';
@@ -20,6 +14,15 @@ import { EditFriendsComponent } from 'src/app/dialogs/edit-friends/edit-friends.
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
+
+  searchValue = '';
+  visible = false;
+  searchText= '';
+  friendById!:Friend;
+  message!: string;
+  friendList: Friend[] = [];
+  user_id!: string;
+  filteredData:Friend[]=[];
 
   listOfColumn = [
     {
@@ -48,21 +51,9 @@ export class MainPageComponent implements OnInit {
     },
   ];
 
-
-  searchValue = '';
-  visible = false;
-
-  friendById!:Friend;
-  message!: string;
-  friendList: Friend[] = [];
-  user_id!: string;
-
-
-
   constructor(
     public userService: UserService, private route: ActivatedRoute,
     private _snackBar: MatSnackBar, private router: Router, public dialog: MatDialog) {
-
   }
 
   setId() {
@@ -76,28 +67,17 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.setId();
     this.getFriends();
-    
   }
 
-  // getFriends() {
-  //   this.setId();
-  //   this.userService.getFriends(this.user_id).subscribe((data: any) => {
-  //     this.friendList = data.data as Friend[];
-  //  console.log(this.friendList);
-  //   });
-
-  // }
   getFriends() {
     this.setId();
-    // Retrieve the data from the database
     this.userService.getFriends(this.user_id).subscribe((data: any) => {
-      // Assign the retrieved data to the friendList
       this.friendList = data.data as Friend[];
       console.log(this.friendList);
       this.filteredData = this.friendList;
     });
-   
   }
+
   private openSnackBar(message: string): void {
     this._snackBar.open(message, 'Close',
       {
@@ -127,16 +107,9 @@ export class MainPageComponent implements OnInit {
       });
 
   }
-  // searchValue = '';
-
-  // applyFilter() {
-  //   // Aplicați filtrul aici, folosind valoarea din 'searchValue'
-  //   // Actualizați tabelul cu rezultatele filtrate
-  // }
 
   clearFilter() {
     this.searchValue = '';
-    //this.applyFilter();
   }
   openEdit(id:string) {
     this.userService.getFriendById(id).subscribe((data: any) => {
@@ -156,26 +129,16 @@ export class MainPageComponent implements OnInit {
       }
     });
   }
-
-
-  // Create a MatTableDataSource instance to enable filtering
-
-  // ...
-
-
   reset(): void {
     this.searchValue = '';
     this.search();
   }
-
 
   listOfDisplayData = [...this.friendList];
   search(): void {
     this.visible = false;
     this.listOfDisplayData = this.friendList.filter((item: Friend) => item.firstName.indexOf(this.searchValue) !== -1);
   }
-  filteredData = this.friendList;
-  searchText= '';
 
   filterTable() {
     console.log(this.filteredData);
@@ -188,12 +151,13 @@ export class MainPageComponent implements OnInit {
         || item.phoneNumber.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
-
      else {
       this.filteredData = this.friendList;
     }
   }
+
   setFilteredDataToInitial(){
     this.filteredData=this.friendList;
   }
+
 }
